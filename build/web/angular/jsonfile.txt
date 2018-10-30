@@ -1,0 +1,1 @@
+[{"address":"Kapilvastu","dob":"27-02-1995","contact":"8989898787","name":"Irfan Khan","email":"irfan@gmail.com"},{"address":"Kapilvastu","dob":"27-02-1995","contact":"7773045200","name":"Rakesh Kumar","email":"rakesh@gmail.com"},{"address":"Bhopal","dob":"27-02-1995","contact":"9375748426","name":"Ravi Raushan","email":"ravi@gmail.com"}]
