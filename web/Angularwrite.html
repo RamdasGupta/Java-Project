@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+<form>
+               <h2>Register Form</h2>
+                
+                <div>
+                    <label>ID</label> 
+                    <input type="text" ng-model="id" placeholder="ID" required="required" > 
+                </div>
+                <div>
+                    <label>Name</label> 
+                    <input type="text" ng-model="name" placeholder="Name" required="required" > 
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="text" ng-model="email" placeholder="Email" required="required"  > 
+                </div>
+                <div>
+                    <label>Phone</label>
+                    <input type="phone" ng-model="phone" placeholder="Phone">
+                </div>
+                <button ng-click='Register()' >Register</button>
+            </form>
+             <table>
+    <tr><th>Id</th><th>Name</th><th>Email</th><th>Phone</th></tr>
+  
+    <tr ng-repeat="data in usersData">
+    <td>{{data.id}}</td>
+    <td>{{data.name}}</td>
+   <td>{{data.email}}</td>
+  <td>{{data.phone}}</td>
+    </tr>
+    </table>
+</div>
+<script type="text/javascript">
+        
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+
+ $scope.Register = function() {
+    $http.post("ang.json",{'id': $scope.id,'name': $scope.name,'email': $scope.email,'phone': $scope.phone})
+    .success(function(response) {
+        $scope.usersData = response.users;
+            });
+
+        };
+  });
+
+  </script>
+
+</body>
+</html>

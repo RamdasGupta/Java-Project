@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <body ng-app="myApp" class="container jumbotron">
+
+        <div ng-controller="cost" class="panel panel-info">
+            <div class="panel-heading">Cost Calculator</div>
+            <div class="panel-body">
+                Quantity: <input type="number" class="form-control" ng-model="quantity">
+                Price: <input type="number" class="form-control" ng-model="price">
+            </div>
+            <div class="panel-footer">Total in dollar:<b>{{quantity * price}}</b></div>
+        </div>
+
+        <div ng-controller="name"  class="panel panel-primary">
+            <div class="panel-heading">Looping with objects:</div>
+            <div class="container panel-body">
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in names| orderBy :myOrderBy | filter :''">
+                            <td>{{x.fname}}</td><td>{{x.lname}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='panel-footer'>
+                <button ng-click="orderByMe('fname')" class='btn btn-primary'>Sort by first name</button>
+                <button ng-click="orderByMe('lname')" class='btn btn-primary'>Sort by last name</button>
+            </div>
+        </div>
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">Form validate...</div>
+            <div class="panel-body">
+                <form ng-app="" name="myForm">
+                    <input type="email" name="email" ng-model="text" class="form-control" placeholder="Enter your email...">
+                    <span ng-show="myForm.email.$error.email">Not a valid email...</span>
+                </form>
+            </div>
+        </div>
+
+        <div ng-controller="changename" class="panel panel-primary">
+            <div class="panel-heading">onClick Change</div>
+            <div class="panel-body"><button class="btn btn-success" ng-click="changeName()">{{firstname}}</button></div>
+        </div>
+
+
+        <div class="panel panel-primary" ng-controller="showname">
+            <div class="panel-heading">Form</div>
+            <div class="panel-body">
+                <input type="text" name="fname" ng-model="fname" class="form-control" placeholder="Enter your first name..."><br/>
+                <input type="text" name="lname" ng-model="lname" class="form-control" placeholder="Enter your last name...">
+            </div>
+            <div class="panel-footer"><button class="btn btn-success" ng-click="showName()">Submit</button></div>
+            <span id='show'></span>
+        </div>
+
+        <div class="panel panel-primary" ng-app="myApp" ng-controller="location">
+            <div class="panel-heading">Absolute Location</div>
+            <div class="panel-body">{{myUrl}}</div>
+        </div>
+
+        <div class="panel panel-primary" ng-controller="datafrom">
+            <div class="panel-heading">HTTP Request</div>
+            <div class="panel-body">
+                <p>DATA:{{mydata}}</p>
+                <p>Status Code:{{statuscode}}</p>
+                <p>Status Text:{{statusdata}}</p>
+            </div>
+        </div>
+
+        <div class="panel panel-primary" ng-controller="timeout">
+            <div class="panel-heading">Time out</div>
+            <div class="panel-body">{{timeout}}</div>
+        </div>
+
+        <div class="panel panel-primary" ng-controller="time">
+            <div class="panel-heading">Time</div>
+            <div class="panel-body text-center"><h2 class="btn btn-primary">{{theTime}}</h2></div>
+        </div>
+
+        <div class="panel panel-primary" ng-controller="timeout">
+            <div class="panel-heading">Time out</div>
+            <div class="panel-body">{{timeout}}</div>
+        </div>
+
+        <div ng-controller="json"  class="panel panel-primary">
+            <div class="panel-heading">Data from JSON file:</div>
+            <div class="container panel-body">
+                <table class='table table-hover'>
+                    <thead>
+                        <tr> 
+                            <th>Index</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in json">
+                            <td ng-if="$odd" style="background-color: brown">{{$index + 1}}</td><td ng-if="$even" style="background-color: saddlebrown">{{$index + 1}}</td>
+                            <td ng-if="$odd" style="background-color: brown">{{x.name}}</td><td ng-if="$even" style="background-color: saddlebrown">{{x.name}}</td>
+                            <td ng-if="$odd"style="background-color: brown">{{x.email}}</td><td ng-if="$even" style="background-color: saddlebrown">{{x.email}}</td>
+                            <td ng-if="$odd"style="background-color: brown">{{x.contact}}</td><td ng-if="$even" style="background-color: saddlebrown">{{x.contact}}</td>
+                            <td ng-if="$odd"style="background-color: brown">{{x.address}}</td><td ng-if="$even" style="background-color: saddlebrown">{{x.address}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div ng-controller="jsonfile"  class="panel panel-primary">
+            <div class="panel-heading">Data from JSON file:</div>
+            <div class="container panel-body">
+                <select ng-model="select" ng-options="x.name for x in json" class="form-control"></select>    
+                <table class='table table-hover'>
+                    <thead>
+                        <tr> 
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: saddlebrown">{{select.name}}</td>
+                            <td style="background-color: saddlebrown">{{select.email}}</td>
+                            <td style="background-color: saddlebrown">{{select.contact}}</td>
+                            <td style="background-color: saddlebrown">{{select.address}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div ng-controller="onclickshow" class="panel panel-primary" >
+            <div class="panel-heading">onClick hide</div>
+            <div class="panel-body">
+                <button class="btn btn-success" ng-click="show()">Click Here: </button>{{showMe}}
+                <div ng-hide="showMe"><h2>Welcome....</h2></div>
+            </div>
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('cost', function ($scope) {
+            $scope.quantity = 1;
+            $scope.price = 5;
+            });
+            app.controller('name', function ($scope) {
+            $scope.names = [{fname: 'Ramdas', lname: 'Gupta'}, {fname: 'Ravi', lname: 'Raushan'}, {fname: 'Rakesh', lname: 'Kumar'}];
+            $scope.orderByMe = function (x) {
+            $scope.myOrderBy = x;
+            }
+            });
+            app.controller('changename', function ($scope) {
+            $scope.firstname = "Ramdas Gupta";
+            $scope.changeName = function () {
+            $scope.firstname = "Ravi Raushan";
+            }
+            });
+            app.controller('showname', function ($scope) {
+            $scope.fname = "";
+            $scope.lname = "";
+            $scope.showName = function () {
+            //$scope.firstname = $scope.fname;
+            //$scope.lastname = $scope.lname;  
+            //return "Full Name : "+ $scope.fname + " " + $scope.lname;
+            document.getElementById("show").innerHTML = "Full Name : " + $scope.fname + " " + $scope.lname;
+            }
+            });
+            app.controller('location', function ($scope, $location) {
+            $scope.myUrl = $location.absUrl();
+            });
+            app.controller('datafrom', function ($scope, $http) {
+            $http.get("welcome.html").then(function (response) {
+            $scope.mydata = response.data;
+            $scope.statuscode = response.status;
+            $scope.statustext = response.statusText;
+            }, function(response) {
+            $scope.mydata = "Something went wrong";
+            });
+            });
+            app.controller('timeout', function($scope, $timeout) {
+            $scope.timeout = "Hello World!";
+            $timeout(function () {
+            $scope.timeout = "How are you today?";
+            }, 2000);
+            });
+            app.controller('time', function($scope, $interval) {
+            $scope.theTime = new Date().toLocaleTimeString();
+            $interval(function () {
+            $scope.theTime = new Date().toLocaleTimeString();
+            }, 1000);
+            });
+            app.controller('json', function($scope, $http) {
+            $http.get("jsonfile.txt").then(function(response) {
+            $scope.json = response.data;
+            $scope.status = response.status;
+            });
+            });
+            app.controller('jsonfile', function($scope, $http) {
+            $http.get("jsonfile.txt").then(function(response) {
+            $scope.json = response.data;
+            });
+            });
+            app.controller('onclickshow', function($scope) {
+            $scope.showMe = false;
+            $scope.show = function() {
+            $scope.showMe = !$scope.showMe;
+            }
+            });
+            
+            
+        </script>
+    </body>
+</html>

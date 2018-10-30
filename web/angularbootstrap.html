@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+    <body ng-app class="container">
+        <br />
+        <form class="form-horizontal" ng-submit="submitStudnetForm()" role="form" name="studentForm" novalidate>
+            <div class="form-group" ng-class="{'has-error': studentForm.firstName.$touched && studentForm.firstName.$error.required , 'has-success': studentForm.firstName.$valid }">
+                <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-6">
+                    <input type="text" id="firstName" name="firstName" class="form-control" ng-model="firstName" required />
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block" ng-show="studentForm.firstName.$touched && studentForm.firstName.$error.required">Please enter First Name.</span>
+                </div>
+
+            </div>
+            <div class="form-group" ng-class="{'has-error': studentForm.lastName.$touched && studentForm.lastName.$error.required ,  'has-success': studentForm.lastName.$valid}">
+                <label for="lastname" class="col-sm-3 control-label">
+                    Last Name
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" id="lastName" name="lastName" class="form-control" ng-model="lastName" required />
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block" ng-show="studentForm.lastName.$touched && studentForm.lastName.$error.required">Please enter Last Name.</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': studentForm.emailId.$touched && studentForm.emailId.$error.email , 'has-success': studentForm.emailId.$valid}">
+                <label for="dob" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" id="dob" name="emailId" class="form-control" ng-model="email" />
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block" ng-show="studentForm.emailId.$touched && studentForm.emailId.$error.email">Please enter valid email.</span>
+                </div>
+            </div>
+
+
+            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
+            <input type="button" value="Reset" class="btn" />
+        </form>
+    </body>
+</html>

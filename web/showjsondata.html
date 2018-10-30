@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body class="container jumbotron">
+        <h2>Data from josn file</h2>
+        <div id="update"></div> 
+        <script>
+            $.getJSON('jsonfile.txt', function (data) {
+                console.log(data);
+                var output = '<select id="myselect" onchange="record(this.value)"><option value="">Choose an option:</option>';
+                $.each(data, function (key, val) {
+                    output += '<option value="' + val.ID + '">' + val.ID + '</option>';
+                });
+                output += '</select>';
+                $('#update').html(output);
+            });
+        </script>
+        <br/>
+      <div id="update1" ></div> 
+        <script>
+            function record(rec) {
+                var a=document.getElementById("myselect").value;
+               $.getJSON('jsonfile.txt', function (data) {
+                console.log(data);
+                var output = '<table class="table table-bordered table-hover"><tbody>';
+                $.each(data, function (key, val) {
+                    if(val.ID==a){
+                    output += '<tr><td>' + val.ID + '</td><td>' + val.Name + '</td></tr>';
+                    }
+                });
+                output += '</tbody></table>';
+                $('#update1').html(output);
+            });
+            }
+        </script>
+    </body>
+</html>
